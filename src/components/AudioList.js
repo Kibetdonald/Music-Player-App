@@ -3,17 +3,57 @@ import React, { Component } from "react";
 import { AudioContext } from "../context/AudioProvider";
 import { FontAwesome, Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Audio } from "expo-av";
 
 const ArtistName = "<Unknown>";
 
 export class AudioList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      playbackObj: null,
+      soundObj: null,
+      currentAudio: {}
+    };
+  }
+
   static contextType = AudioContext;
   // navigation = useNavigation();
+
+  playMusic = async (audio) => {
+// Playing Audio
+    if (this.state.soundObj === null) {
+      const playbackObj = new Audio.Sound();
+      const status = await playbackObj.loadAsync(
+        { uri: audio.uri },
+        { shouldPlay: true }
+      );
+     return this.setState({
+        ...this.state,
+        currentAudio: audio,
+        playbackObj: playbackObj,
+        soundObj: status,
+      });
+    }
+    // Pausing Audio
+    if(this.state.soundObj.isLoaded && this.state.soundObj.isPlaying){
+    const status = this.state.playbackObj.setStatusAsync({shouldPlay: false})
+    return this.setState({
+      ...this.state,
+      soundObj: status,
+    });
+    }
+    // Resume Audio
+    if(this.state.soundObj.isLoaded && !this.state.soundObj.isPlaying && this.state.currentAudio.id === audio.id){
+       const status = await this.state.playbackObj.playAsync()
+       return this.setState({
+        ...this.state,
+        soundObj: status,
+      });
+    }
+  };
+
   render() {
-    const playMusic = () => {
-      // navigation.navigate("play");
-      console.log("Clicked");
-    };
     return (
       <ScrollView>
         {this.context.audioFiles.map((item) => (
@@ -23,7 +63,7 @@ export class AudioList extends Component {
             </View>
             <View>
               <Text
-                onPress={playMusic}
+                onPress={() => this.playMusic(item)}
                 style={styles.filenames}
                 key={item.id}
                 numberOfLines={1}
