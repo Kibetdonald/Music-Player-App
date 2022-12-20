@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   },
   PlaylistView: {
     flexDirection: "row",
-    paddingBottom: 10,
+    paddingBottom: 15,
     paddingHorizontal: 20,
   },
   IconView: {

@@ -6,12 +6,12 @@ export default function MusicPlaying() {
   return (
     <View style={styles.MusicPlaying}>
       <View style={styles.IconView}>
-        <FontAwesome name="music" size={20} color="#fff" />
+        <FontAwesome name="music" size={20} color="#000" />
       </View>
 
-      <Text style={{color: "white"}}>Adele - When We Were Young (Lyrics).mp3</Text>
-      <FontAwesome name="pause" size={18} color="#fff" />
-      <MaterialCommunityIcons name="playlist-music" size={24} color="white" />
+      <Text style={{color: "#000"}}>Adele - When We Were Young (Lyrics).mp3</Text>
+      <FontAwesome name="pause" size={18} color="#000" />
+      <MaterialCommunityIcons name="playlist-music" size={24} color="black" />
     </View>
   );
 }
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: "center",
     height: 65,
-    backgroundColor: "black"
+    backgroundColor: "white"
   },
   IconView: {
     height: 40,

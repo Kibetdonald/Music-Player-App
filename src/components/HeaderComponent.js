@@ -23,13 +23,13 @@ const playMusic = () => {
     <View>
       <View style={styles.topWrapper} />
       <View style={styles.topWrapper2}>
-        <Entypo name="menu" size={30} color="#fff" />
+        <Entypo name="menu" size={30} color="#000" />
         <Text onPress={playMusic} style={styles.Title}>Music Player</Text>
         <FontAwesome
           style={{ paddingLeft: "45%" }}
           name="search"
           size={20}
-          color="#fff"
+          color="#000"
         />
       </View>
       <View style={{ height: 780 }}>
@@ -37,8 +37,8 @@ const playMusic = () => {
             initialRouteName="Songs"
             screenOptions={{
               tabBarActiveTintColor: "#fff",
-              tabBarLabelStyle: { fontSize: 12, color: "#fff" },
-              tabBarStyle: { backgroundColor: "black" },
+              tabBarLabelStyle: { fontSize: 12, color: "#000"},
+              tabBarStyle: { backgroundColor: "#fff" },
             }}
           >
             <Tab.Screen
@@ -90,12 +90,12 @@ const styles = StyleSheet.create({
     height: 40,
     paddingTop: 10,
     paddingHorizontal: 20,
-    backgroundColor: "black"
+    backgroundColor: "#fff"
   },
   Title: {
     paddingLeft: 22,
     fontSize: 24,
     fontWeight: "bold",
-    color: "white"
+    color: "#000"
   },
 });
